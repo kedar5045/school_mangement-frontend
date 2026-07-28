@@ -81,12 +81,6 @@ const isEditMode = location.pathname.includes("/edit/");
     alert(error.message);
   }
 };
-useEffect(() => {
-  if (id) {
-    fetchAdmission();
-  }
-}, [id, fetchAdmission]);
-
 const fetchAdmission = useCallback(async () => {
   try {
     const response = await fetch(
@@ -110,6 +104,14 @@ const fetchAdmission = useCallback(async () => {
     console.log(err);
   }
 }, [id]);
+
+useEffect(() => {
+  if (id) {
+    fetchAdmission();
+  }
+}, [id, fetchAdmission]);
+
+
 
   return (
     <Box sx={{ p: 3, background: "#f3f5f9", minHeight: "100vh" }}>
