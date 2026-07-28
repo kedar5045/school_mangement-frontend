@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Box, Typography, Button, Grid, Card, CardContent, TextField, Paper,
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton,
@@ -41,26 +41,28 @@ export default function Classes() {
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
 
-  const fetchClasses = async () => {
-    setLoading(true);
-    try {
-      const params = new URLSearchParams();
-      if (search) params.append("search", search);
+  const fetchClasses = useCallback(async () => {
+  setLoading(true);
+  try {
+    const params = new URLSearchParams();
+    if (search) params.append("search", search);
 
-      const res = await fetch(`https://sachool-managemnt-backend.onrender.com/api/classes?${params.toString()}`);
-      const data = await res.json();
-      setRows(data);
-    } catch (err) {
-      console.error("Failed to fetch classes:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
+    const res = await fetch(
+      `https://sachool-managemnt-backend.onrender.com/api/classes?${params.toString()}`
+    );
+    const data = await res.json();
+    setRows(data);
+  } catch (err) {
+    console.error("Failed to fetch classes:", err);
+  } finally {
+    setLoading(false);
+  }
+}, [search]);
 
   // Runs once when the page loads
-  useEffect(() => {
-    fetchClasses();
-  }, []);
+ useEffect(() => {
+  fetchClasses();
+}, [fetchClasses]);
 
   const totalClasses = rows.length;
   const totalStudents = rows.reduce(
