@@ -7,7 +7,7 @@ import {
   Grid,
   MenuItem,
 } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect ,useCallback} from "react";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useParams, useLocation } from "react-router-dom";
@@ -85,9 +85,9 @@ useEffect(() => {
   if (id) {
     fetchAdmission();
   }
-}, [id]);
+}, [id, fetchAdmission]);
 
-const fetchAdmission = async () => {
+const fetchAdmission = useCallback(async () => {
   try {
     const response = await fetch(
       `https://sachool-managemnt-backend.onrender.com/api/admissions/${id}`
@@ -97,21 +97,19 @@ const fetchAdmission = async () => {
 
     if (data.success) {
       setForm({
-  name: data.data.fullName || "",
-  email: data.data.email || "",
-  phone: data.data.phone || "",
-  class: data.data.className || "",
-  dob: data.data.dob
-    ? data.data.dob.split("T")[0]
-    : "",
-  gender: data.data.gender || "",
-  address: data.data.address || "",
-});
+        name: data.data.fullName || "",
+        email: data.data.email || "",
+        phone: data.data.phone || "",
+        class: data.data.className || "",
+        dob: data.data.dob ? data.data.dob.split("T")[0] : "",
+        gender: data.data.gender || "",
+        address: data.data.address || "",
+      });
     }
   } catch (err) {
     console.log(err);
   }
-};
+}, [id]);
 
   return (
     <Box sx={{ p: 3, background: "#f3f5f9", minHeight: "100vh" }}>
