@@ -28,10 +28,7 @@ export default function Enquiry() {
   const [enquiries, setEnquiries] = useState([]);
 
   useEffect(() => {
-    fetchEnquiries();
-  }, []);
-
-  const fetchEnquiries = async () => {
+     const fetchEnquiries = async () => {
     try {
       const response = await fetch("https://sachool-managemnt-backend.onrender.com/api/enquiries");
 
@@ -44,7 +41,10 @@ export default function Enquiry() {
       console.log(err);
     }
   };
+    fetchEnquiries();
+  }, []);
 
+  
   const totalEnquiries = enquiries.length;
 
   const newEnquiries = enquiries.filter(
