@@ -20,12 +20,6 @@ const location = useLocation();
 
 const isViewMode = location.pathname.includes("/view/");
 const isEditMode = location.pathname.includes("/edit/");
-
-useEffect(() => {
-  if (id) {
-    fetchEnquiry();
-  }
-},  [id, fetchEnquiry]);
 const fetchEnquiry = useCallback( async () => {
   try {
     const response = await fetch(
@@ -41,6 +35,12 @@ const fetchEnquiry = useCallback( async () => {
     console.log(err);
   }
 }, [id]);
+useEffect(() => {
+  if (id) {
+    fetchEnquiry();
+  }
+},  [id, fetchEnquiry]);
+
   const navigate=useNavigate();
   const [form, setForm] = useState({
     studentName: "",
