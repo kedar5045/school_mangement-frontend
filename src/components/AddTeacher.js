@@ -87,12 +87,7 @@ const handleSubmit = async (e) => {
   }
 };
 useEffect(() => {
-  if (id) {
-    fetchTeacher();
-  }
-}, [id]);
-
-const fetchTeacher = async () => {
+  const fetchTeacher = async () => {
   try {
     const response = await fetch(
       `https://sachool-managemnt-backend.onrender.com/api/teachers/${id}`
@@ -107,6 +102,12 @@ const fetchTeacher = async () => {
     console.log(err);
   }
 };
+  if (id) {
+    fetchTeacher();
+  }
+}, [id]);
+
+
 
   return (
     <Box sx={{ p: 4, background: "#f5f7fb", minHeight: "100vh" }}>

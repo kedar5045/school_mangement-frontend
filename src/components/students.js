@@ -61,9 +61,7 @@ export default function Students() {
     fetchStats();
   }, [])
 
-  const handleExport = () => {
-    window.open("https://sachool-managemnt-backend.onrender.com/api/students/export", "_blank");
-  };
+ 
   return (
 
 
@@ -90,12 +88,8 @@ export default function Students() {
         </Box>
 
         <Box sx={{ display: "flex", gap: 2 }}>
-          <Button
-            variant="outlined"
-            startIcon={<DownloadIcon />}
-          >
-            Export
-          </Button>
+          
+          
 
           <Button
             variant="contained"

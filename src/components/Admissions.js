@@ -50,24 +50,7 @@ export default function Admissions() {
 
   const [students, setStudents] = useState([]);
 
-  function getStatusColor(status) {
-    switch (status) {
-      case "Approved":
-        return "success";
-      case "Pending":
-        return "warning";
-      case "Rejected":
-        return "error";
-      default:
-        return "default";
-    }
-  }
-
-  function stringAvatar(name) {
-    return {
-      children: name[0],
-    };
-  }
+  
 
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
