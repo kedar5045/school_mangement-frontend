@@ -31,7 +31,7 @@ export default function AddStudent() {
     const location = useLocation();
   const isViewMode = location.pathname.includes("/view/");
   const isEditMode = location.pathname.includes("/edit/");
-
+const [error, setError] = useState("");
     const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -169,7 +169,11 @@ export default function AddStudent() {
 )}
         </Box>
       </Box>
-
+{error && (
+  <Typography color="error" sx={{ mb: 2 }}>
+    {error}
+  </Typography>
+)}
       {/* Main Card */}
 
       <Card sx={{ borderRadius: 3 }}>
