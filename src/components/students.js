@@ -2,7 +2,7 @@ import {
   Box, Grid, Paper, Typography, Button, TextField, MenuItem,
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
 } from "@mui/material"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
 
@@ -29,7 +29,7 @@ export default function Students() {
   const [classFilter, setClassFilter] = useState("");
 
   // Fetches the list, optionally filtered
-  const fetchStudents = async () => {
+const fetchStudents = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
@@ -44,7 +44,7 @@ export default function Students() {
     } finally {
       setLoading(false);
     }
-  };
+}, [search, classFilter]);
   const fetchStats = async () => {
     try {
       const res = await fetch("https://sachool-managemnt-backend.onrender.com/api/students/stats");
@@ -59,7 +59,7 @@ export default function Students() {
   useEffect(() => {
     fetchStudents();
     fetchStats();
-  }, [])
+  },  [fetchStudents]);
 
  
   return (
