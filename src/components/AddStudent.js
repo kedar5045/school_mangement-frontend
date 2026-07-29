@@ -46,7 +46,7 @@ export default function AddStudent() {
     status: "Active",
   });
 
-   const [error, setError] = useState("");
+
   const [saving, setSaving] = useState(false);
     const handleChange = (e) => {
     const { name, value } = e.target;
