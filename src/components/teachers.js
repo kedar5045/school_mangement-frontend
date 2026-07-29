@@ -22,10 +22,7 @@ export default function Teachers() {
   const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
-  fetchTeachers();
-}, []);
-
-const fetchTeachers = async () => {
+    const fetchTeachers = async () => {
   try {
     const response = await fetch("https://sachool-managemnt-backend.onrender.com/api/teachers");
     const data = await response.json();
@@ -37,6 +34,11 @@ const fetchTeachers = async () => {
     console.log(err);
   }
 };
+
+  fetchTeachers();
+}, []);
+
+
 
   const navigate = useNavigate();
   const totalTeachers = teachers.length;
@@ -195,11 +197,11 @@ const departments = [
                     <Avatar />
 
                     <Box>
-                      <Typography fontWeight="bold">
+                      
                         <Typography fontWeight="bold">
   {teacher.firstName} {teacher.lastName}
 </Typography>
-                      </Typography>
+                      
 
                       <Typography variant="body2">
                         {teacher.phone}
@@ -230,7 +232,7 @@ const departments = [
                 </td>
 
                 <td style={tdStyle}>
-                  <IconButton>
+                 
                     <IconButton
   onClick={() =>
     navigate(`/dashboard/teachers/view/${teacher._id}`)
@@ -238,7 +240,7 @@ const departments = [
 >
   <VisibilityIcon />
 </IconButton>
-                  </IconButton>
+                  
 
                   <IconButton
   onClick={() =>

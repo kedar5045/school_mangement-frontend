@@ -1,4 +1,3 @@
-
 import {
   Box,
   Grid,
@@ -13,7 +12,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Avatar,
   Chip,
 } from "@mui/material";
 
@@ -23,16 +21,11 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-const enquiries = [
-
-];
 
 export default function Enquiry() {
   const navigate = useNavigate();
 
   const [enquiries, setEnquiries] = useState([]);
-
-
 
   useEffect(() => {
     fetchEnquiries();
@@ -51,6 +44,7 @@ export default function Enquiry() {
       console.log(err);
     }
   };
+
   const totalEnquiries = enquiries.length;
 
   const newEnquiries = enquiries.filter(
@@ -66,6 +60,7 @@ export default function Enquiry() {
   const convertedEnquiries = enquiries.filter(
     (enquiry) => enquiry.status === "Converted"
   ).length;
+
   return (
     <Box sx={{ p: 4, bgcolor: "#f5f7fb", minHeight: "100vh" }}>
       {/* Header */}
@@ -206,17 +201,17 @@ export default function Enquiry() {
 
                     <TableCell>
                       <VisibilityIcon
-  sx={{ cursor: "pointer", mr: 2 }}
-  onClick={() =>
-    navigate(`/dashboard/enquiry/view/${row._id}`)
-  }
-/>
+                        sx={{ cursor: "pointer", mr: 2 }}
+                        onClick={() =>
+                          navigate(`/dashboard/enquiry/view/${row._id}`)
+                        }
+                      />
                       <EditIcon
-  sx={{ cursor: "pointer" }}
-  onClick={() =>
-    navigate(`/dashboard/enquiry/edit/${row._id}`)
-  }
-/>
+                        sx={{ cursor: "pointer" }}
+                        onClick={() =>
+                          navigate(`/dashboard/enquiry/edit/${row._id}`)
+                        }
+                      />
                     </TableCell>
                   </TableRow>
                 ))}
@@ -224,9 +219,6 @@ export default function Enquiry() {
             </Table>
           </TableContainer>
         </Grid>
-
-        {/* Details Panel */}
-       
       </Grid>
     </Box>
   );
