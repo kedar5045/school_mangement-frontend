@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Box,
   Paper,
@@ -25,9 +25,8 @@ useEffect(() => {
   if (id) {
     fetchEnquiry();
   }
-}, [id]);
-
-const fetchEnquiry = async () => {
+},  [id, fetchEnquiry]);
+const fetchEnquiry = useCallback( async () => {
   try {
     const response = await fetch(
       `https://sachool-managemnt-backend.onrender.com/api/enquiries/${id}`
@@ -41,7 +40,7 @@ const fetchEnquiry = async () => {
   } catch (err) {
     console.log(err);
   }
-};
+}, [id]);
   const navigate=useNavigate();
   const [form, setForm] = useState({
     studentName: "",
@@ -66,7 +65,7 @@ const fetchEnquiry = async () => {
   e.preventDefault();
 
   try {
-    const response = await fetch("hhttps://sachool-managemnt-backend.onrender.com/api/enquiries", {
+    const response = await fetch("https://sachool-managemnt-backend.onrender.com/api/enquiries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
